@@ -5,6 +5,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
+from markdownify import markdownify as md
 import time
 
 # Set up Selenium WebDriver
@@ -77,6 +78,8 @@ def has_blogpost_relatedposts_class(tag):
     return tag.has_attr('class') and any('BlogPost_relatedPostsList' in cls for cls in tag['class'])
 
 
+#%%
+
 blog_contents = []
 
 # parse the first blog post using beautifulsoup
@@ -111,8 +114,9 @@ for blog_link in blog_links:
     
     author = date_author.split(' • ')[0].strip()
     title = elements_with_blogpost_title[0].get_text()
-    content = elements_with_blogpost_content[0].get_text()
-
+    content = soup.find_all(has_blogpost_content_class)[0]
+    html_string = str(content)
+    content_markdown = md(html_string)
     # extract out the related base on the the text of the a tag
     try:
         tags = [tag['href'].split('/')[-1] for tag in elements_with_blogpost_tags[0].find_all('a')]
@@ -128,7 +132,7 @@ for blog_link in blog_links:
         'author': author,
         'title': title,
         'tags': tags,
-        'content': content,
+        'content': content_markdown,
         'related_posts': related_posts,
         'link': blog_link,
     })

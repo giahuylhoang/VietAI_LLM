@@ -1,0 +1,19 @@
+
+
+#ignore chroma_db, storage, storage_tmp, and tmp folders
+
+chroma_db/
+storage/
+storage_tmp/
+tmp/
+
+#ignore all files in the chroma_db, storage, storage_tmp, and tmp folders
+
+
+chroma_db/*
+storage/*
+storage_tmp/*
+tmp/*
+
+
+.DS_Store
