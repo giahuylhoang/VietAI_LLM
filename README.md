@@ -31,8 +31,6 @@ Tested various embedding models:
 
 ## Results
 
-Here is the table from the provided images formatted in Markdown:
-
 ### Chunk Size: 1024
 
 |    **reranker & metrics**         | embed-english-v2.0 | text-embedding-ada-002 | embedding-001 | text-embedding-3-small | voyage-2 | embed-english-v3.0 |
